@@ -1,0 +1,16 @@
+<!doctype html><html><head><title>CyberGuard Dashboard</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><nav><div class="brand">CYBER<span>GUARD</span></div><div>{{user.name}} · {{user.role}} &nbsp; <a href="/logout">Logout</a></div></nav>
+<main><div class="hero"><div><h1>Security Command Center</h1><p>Real-time threat detection, incident response and compliance visibility.</p></div>
+<div class="pulse">● LIVE MONITORING</div></div>
+<div class="cards"><div><b>{{stats.total}}</b><span>Total Threats</span></div><div class="danger"><b>{{stats.critical}}</b><span>Critical</span></div><div class="warn"><b>{{stats.high}}</b><span>High Risk</span></div><div class="ok"><b>{{stats.resolved}}</b><span>Resolved</span></div></div>
+<section class="grid"><div class="panel wide"><div class="panel-head"><h2>Threat Detection Feed</h2><span class="tag">AUTO TRIAGE</span></div>
+<table><tr><th>Threat</th><th>Source IP</th><th>Target</th><th>Severity</th><th>Status</th><th>Time</th></tr>
+{% for t in threats %}<tr><td><b>{{t.name}}</b><small>{{t.hostname}}</small></td><td>{{t.source_ip}}</td><td>{{t.destination_ip}}</td>
+<td><span class="sev {{t.severity|lower}}">{{t.severity}}</span></td><td>{{t.status}}</td><td>{{t.timestamp}}</td></tr>{% endfor %}</table></div>
+<div class="panel"><h2>Endpoint Health</h2>{% for d in devices %}<div class="device"><div><b>{{d.hostname}}</b><small>{{d.ip}} · {{d.os}}</small></div><span class="health">{{d.health}}</span></div>{% endfor %}</div></section>
+<section class="grid"><div class="panel wide"><div class="panel-head"><h2>Incident Response</h2><span class="tag">TICKET WORKFLOW</span></div>
+{% for i in incidents %}<div class="incident"><div><b>{{i.threat_name}}</b><small>{{i.priority}} · {{i.updated_at}}</small></div><form method="post" action="/incident/{{i.id}}"><select name="status"><option {% if i.status=='Investigating' %}selected{% endif %}>Investigating</option><option {% if i.status=='Mitigated' %}selected{% endif %}>Mitigated</option><option {% if i.status=='Closed' %}selected{% endif %}>Closed</option></select><input name="notes" value="{{i.notes}}"><button>Update</button></form></div>{% endfor %}</div>
+<div class="panel"><h2>Compliance Scores</h2>{% for s in scores %}<div class="score"><div><b>{{s.name}}</b><small>{{s.remark}}</small></div><strong>{{s.points}}/100</strong></div>{% endfor %}</div></section>
+<section class="panel"><div class="panel-head"><h2>Simulate Threat Event</h2><span class="tag">DEMO</span></div>
+<form class="threat-form" method="post" action="/threat"><input name="name" placeholder="Threat name" required><select name="device_id">{% for d in devices %}<option value="{{d.id}}">{{d.hostname}}</option>{% endfor %}</select><select name="severity"><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select><input name="source_ip" placeholder="Source IP" value="203.0.113.10"><input name="destination_ip" placeholder="Destination IP" value="10.0.4.12"><button class="primary">Detect Threat</button></form></section>
+</main></body></html>

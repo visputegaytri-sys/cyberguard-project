@@ -1,0 +1,18 @@
+CYBERGUARD - RENDER DEPLOYMENT
+
+1. Create/sign in to GitHub.
+2. Create a NEW repository, for example: cyberguard-project
+3. Upload ALL files and folders from this project into the repository.
+4. Open Render and sign in with GitHub.
+5. New -> Web Service. Select the cyberguard-project repository.
+6. Build Command: pip install -r requirements.txt
+7. Start Command: gunicorn app:app
+8. Choose a free web service if available on your account.
+9. Click Create Web Service / Deploy.
+10. After deployment, Render gives an HTTPS URL such as https://cyberguard-xxxx.onrender.com
+
+IMPORTANT:
+- This is an academic/demo prototype. Do not use real passwords or sensitive data.
+- The demo uses SQLite. On hosts with ephemeral storage, database changes may reset after a restart/redeploy.
+- For a production system, use managed PostgreSQL and stronger authentication.
+- Demo accounts in the app are sample accounts only.

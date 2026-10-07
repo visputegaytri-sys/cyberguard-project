@@ -1,0 +1,9 @@
+<!doctype html><html><head><title>CyberGuard Login</title><link rel="stylesheet" href="/static/style.css"></head>
+<body class="login-bg"><div class="login-card"><div class="brand">CYBER<span>GUARD</span></div>
+<h1>Security Operations Portal</h1><p class="muted">Threat Detection & Incident Response</p>
+{% if error %}<div class="error">{{error}}</div>{% endif %}
+<form method="post"><label>Email</label><input name="email" type="email" placeholder="s.jenkins@cyber.io" required>
+<label>Password</label><input name="password" type="password" placeholder="admin123" required>
+<button class="primary">Sign In</button></form>
+<div class="demo"><b>Demo accounts</b><br>Analyst: s.jenkins@cyber.io / admin123<br>Admin: m.vance@cyber.io / admin123<br>Auditor: e.rostova@cyber.io / admin123</div>
+</div></body></html>

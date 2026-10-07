@@ -1,0 +1,13 @@
+CYBERGUARD ONE-CLICK VERSION
+
+1. Extract this ZIP.
+2. Double-click "Start CyberGuard.bat".
+3. The browser will open the CyberGuard software automatically.
+
+Demo login:
+Analyst: s.jenkins@cyber.io / admin123
+Admin: m.vance@cyber.io / admin123
+Auditor: e.rostova@cyber.io / admin123
+
+IMPORTANT:
+Python 3.10+ must be installed on the Windows computer.
